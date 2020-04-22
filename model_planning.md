@@ -15,37 +15,47 @@ This the place of something
 ----
 ## Trail (Hannah)
 ### Attributes 
-- `Trail.traffic_level` 
-  - description: describes the amount of traffic at a particular trail, at current time 
-  - method_type: 
-  - params: 
-  - return: 
-- `Trail.traffic_level_average` 
-  - description: describes the amount of traffic at a trail over time 
-  - method_type: 
-  - params: 
-  - return: 
-- `Trail.traffic_over_day(day)` 
+- `Trail.traffic_current` 
+  - description: describes the amount of traffic at a particular trail, at current hour 
+  - method_type: instance 
+  - params: traffic api source
+  - return: an array of string (low, medium, high traffic) and an integer of current traffic
+- `Trail.traffic_average_all_time` 
+  - description: describes the average amount of traffic at a trail over time 
+  - method_type: instance 
+  - params: [:traffic_data, array]
+  - return: float of average overall traffic 
+- `Trail.traffic_average_per_hour(day)` 
   - description: returns an array of traffic levels at every hour of the day (index:0=> 1:00am, index:2 => 2:00am)
-  - method_type: 
-  - params: 
-  - return: 
+  - method_type: instance
+  - params: [:hour, integer]
+  - return: hash of time pointing to traffic integer 
 - `Trail.type` 
   - description: defines what activities are at that trail instance 
-  - method_type: 
-  - params: 
-  - return: 
+  - method_type: instance
+  - params: trail.all.find_by(params[:activities])
+  - return: array of strings
 - `Trail.length` 
   - description: defines how long the trail is in miles/kilometers 
-  - method_type: 
-  - params: 
-  - return: 
+  - method_type: instance
+  - params: trail.all.find_by(params[:length])
+  - return: float
 - `Trail.shade_level` 
   - description: defines the relative amount of shade on a scale. 
+  - method_type: instance
+  - params:
+  - return: string
 - `Trail.pets_allowed` 
   - description: returns the types of pets allowed (`nil` if no pets allowed)
+  - method_type: instance
   - returns: Array[Pets]
-### Methods 
+- `Trail.info`
+  - description: calls on prior methods to view all the info for that trail and displays it
+  - method_type: instance
+  - params:
+  - return: A string that includes all the data from the methods called
+### Methods
+- `` 
 --- 
 ## User (Lisa)
 ### Attributes (characteristics)
